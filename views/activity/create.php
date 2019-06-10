@@ -20,6 +20,8 @@
         <?=$form->field($model,'email',['enableAjaxValidation'=>true,
             'enableClientValidation'=>false])?>
         <?=$form->field($model,'emailRepeat')?>
+
+        <?=$form->field($model,'img')->fileInput()?>
         <div class="form-group">
             <button type="submit">Отправить</button>
         </div>

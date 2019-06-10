@@ -23,8 +23,7 @@ class ActivityCreateAction extends Action
             }
 
            if(\Yii::$app->activity->createActivity($model)){
-//               echo 'OK';
-//               exit;
+                return $this->controller->render('view',['model'=>$model]);
            }
         }
         $url = $model -> getLink();

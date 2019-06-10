@@ -23,6 +23,8 @@ class Activity extends Model
 
     public $repeatType;
 
+    public $img;
+
     public const REPEAT_TYPE=['1d'=>'Каждый день','1w'=>'Каждую неделю'];
 
     public function beforeValidate()
@@ -39,6 +41,7 @@ class Activity extends Model
         return [
             ['title', 'string', 'min' => 5,'max' => '255'],
             ['title','trim'],
+            ['img','file','extensions' => ['jpg','png']],
             ['title', 'required'],
             ['title', StopPhraseValidation::class],
             ['dateStart','date','format' => 'php:Y-m-d'],
