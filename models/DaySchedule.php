@@ -49,8 +49,8 @@ class DaySchedule extends Model
         return $day;
     }
     public function urlHistory(){
-        $url =  \Yii::$app->request->url;
-        array_push($_SESSION['history'], $url);
-        return  $_SESSION['history'];
+//        $url =  \Yii::$app->request->url;
+//        array_push($_SESSION['history'], $url);
+//        return  $_SESSION['history'];
     }
 }
