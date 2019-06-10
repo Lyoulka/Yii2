@@ -5,4 +5,5 @@
 ?>
 <h2><?=$model->title?></h2>
 
-<p><img src="/images/<?=$model->img?>" </p>
+<p><?=\yii\helpers\Html::img("/images/$model->img",['width'=>200])?>
+</p>
