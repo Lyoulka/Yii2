@@ -16,13 +16,3 @@
     <?php endforeach;?>
 </ul>
 
-<p>История посещений</p>
-<ul>
-    <?php
-    $u ='';
-    foreach ($url as $u) : ?>
-        <li>
-            <?=$u;?>
-        </li>
-    <?php endforeach;?>
-</ul>

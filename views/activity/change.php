@@ -3,8 +3,7 @@
  * @var $model \app\models\Activity
  */
 ?>
-<h2>Добавление события</h2>
-<p><?=$name?></p>
+<h2>Редактирование события</h2>
 <div class="row">
     <div class="col-md-6">
         <?php $form=\yii\bootstrap\ActiveForm::begin(
@@ -18,10 +17,9 @@
         <?=$form->field($model,'useNotification')->checkbox();?>
         <?=$form->field($model,'email',['enableAjaxValidation'=>true,
             'enableClientValidation'=>false])?>
-        <?=$form->field($model,'emailRepeat')?>
         <?=$form->field($model,'img')->fileInput()?>
         <div class="form-group">
-            <button type="submit">Отправить</button>
+            <button type="submit">Сохранить</button>
         </div>
         <?php \yii\bootstrap\ActiveForm::end();?>
     </div>

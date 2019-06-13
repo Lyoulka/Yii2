@@ -5,7 +5,8 @@ use app\models\Activity;
 use yii\base\Action;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
-class ActivityCreateAction extends Action
+
+class ActivityChangeAction extends Action
 {
     public function run(){
         $model = new Activity();
@@ -23,6 +24,6 @@ class ActivityCreateAction extends Action
             }
         }
 
-        return  $this -> controller -> render('create', ['name' => 'Юлия', 'model'=>$model]);
+        return  $this -> controller -> render('change', ['name' => 'Юлия', 'model'=>$model]);
     }
 }

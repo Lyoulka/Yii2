@@ -11,8 +11,6 @@ class DaySchedule extends Model
     public $date;
     public $day;
     public $event;
-    public $history = array();
-    public $url;
     public function rules(){
         return [
             ['date', 'string'],
@@ -47,10 +45,5 @@ class DaySchedule extends Model
                 break;
         }
         return $day;
-    }
-    public function urlHistory(){
-        $url =  \Yii::$app->request->url;
-        array_push($_SESSION['history'], $url);
-        return  $_SESSION['history'];
     }
 }
