@@ -33,7 +33,7 @@ class Activity extends Model
         return [
             ['title', 'string', 'min' => 5,'max' => '255'],
             ['title','trim'],
-            ['img','file','extensions' => ['jpg','png']],
+            ['img','file',  'extensions' => ['jpg', 'jpeg', 'png']],
             ['title', 'required'],
             ['title', StopPhraseValidation::class],
             ['dateStart','date','format' => 'php:Y-m-d'],

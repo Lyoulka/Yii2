@@ -2,6 +2,7 @@
 namespace app\controllers;
 use app\base\BaseWebController;
 use app\controllers\actions\ActivityCreateAction;
+use app\controllers\actions\ActivityChangeAction;
 use yii\helpers\ArrayHelper;
 use yii\helpers\StringHelper;
 class ActivityController extends BaseWebController
@@ -9,7 +10,8 @@ class ActivityController extends BaseWebController
     public function actions()
     {
         return [
-            'create' => ['class' => ActivityCreateAction::class]
+            'create' => ['class' => ActivityCreateAction::class],
+            'change' => ['class' => ActivityChangeAction::class],
         ];
     }
     public function actionHelper(){
