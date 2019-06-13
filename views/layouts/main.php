@@ -66,6 +66,10 @@ AppAsset::register($this);
         <?= $content ?>
     </div>
 </div>
+<div>
+    <h4>Предыдущая страница</h4>
+    <p><?=Yii::$app->session->getFlash('pageBack');?></p>
+</div>
 
 <footer class="footer">
     <div class="container">

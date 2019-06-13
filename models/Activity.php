@@ -14,7 +14,7 @@ class Activity extends Model
     public  $dateFinish;
     public  $isBlocked;
     public  $isRepeat;
-    public $url;
+
     public function rules(){
         return [
             ['title', 'string', 'min' => 5],
@@ -31,10 +31,6 @@ class Activity extends Model
             'isBlocked' => 'Блокирующее'
         ];
     }
-    public function getLink(){
-        $url = new DaySchedule();
-        $url = $url->urlHistory();
-        return $url;
-    }
+
 
 }
