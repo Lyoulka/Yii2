@@ -26,3 +26,5 @@
         <?php \yii\bootstrap\ActiveForm::end();?>
     </div>
 </div>
+
+<p><?=\Yii::$app->request->userIP?></p>
