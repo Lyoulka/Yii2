@@ -29,6 +29,8 @@ class AuthComponent extends Component
         }
         $model->password_hash=$this->generatePasswordHash($model->password);
         if(!$model->save()){
+
+            $this->rbac->addToUserRole();
             return false;
         }
         return true;
