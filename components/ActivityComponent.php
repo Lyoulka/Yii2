@@ -12,17 +12,21 @@ class ActivityComponent extends Component
      * @return Model
      */
     public function getModel(){
-        return new $this->$modelClass;
+        return new $this->modelClass;
     }
-    public function createActivity(activity &$model):bool{
+    public function createActivity(Activity &$model):bool{
         $model->img=UploadedFile::getInstance($model,'img');
-        if ($model->validate()){
+        $model->user_id=\Yii::$app->user->id;
+        if ($model->save()){
             if($model->img && $this->saveFile($model->img,$file_name)){
                 $model->img=$file_name;
             }
             return true;
         }
         return false;
+    }
+    public function findActivityByID($id):?Activity{
+        return Activity::find()->andWhere(['id'=>$id])->one();
     }
     private function saveFile(UploadedFile $file, &$file_name):bool{
         $file_name=$this->genNameFile($file);

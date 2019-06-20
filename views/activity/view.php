@@ -1,14 +1,11 @@
 <?php
 /**
- * @var $model \app\models\Activity
+ * @var $model \app\models\Activity ...
  */
 ?>
-
-
-
 <table>
     <?=\yii\helpers\Html::tag('thead', "$model->title", ['class' => 'title'])?>
-    <tr><td>День начала события:</td><?=\yii\helpers\Html::tag('td', "$model->dateStart", ['class' => 'event'])?></tr>
+    <tr><td>День начала события:</td><?=\yii\helpers\Html::tag('td', "$model->startDate", ['class' => 'event'])?></tr>
     <tr><td>Описание события:</td><?=\yii\helpers\Html::tag('td', "$model->description", ['class' => 'event'])?></tr>
     <tr><td>Повтор события:</td><?=\yii\helpers\Html::tag('td', "$model->repeatType", ['class' => 'event'])?></tr>
     <tr><td>Уведомлять по почте</td><?=\yii\helpers\Html::tag('td', "$model->email", ['class' => 'email'])?></tr>

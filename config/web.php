@@ -14,27 +14,27 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
-    'modules' => [
-        'auth' => [
-            'class' => 'app\modules\auth\Module',
-        ],
-    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'hGjZpICwDvrgPEHg1oVQefu1w35NPgD9',
         ],
+        'authManager'=>[
+            'class'=>'yii\rbac\DbManager'
+        ],
         'activity' => ['class'=> \app\components\ActivityComponent::class],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'rbac'=>['class'=>\app\components\RbacComponent::class],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\Users',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'auth'=>['class' => \app\components\AuthComponent::class],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             // send all mails to a file by default. You have to set

@@ -10,7 +10,7 @@
 //                ['enableAjaxValidation' => true]
         ); ?>
         <?=$form->field($model, 'title');?>
-        <?=$form->field($model,'dateStart');?>
+        <?=$form->field($model,'startDate');?>
         <?=$form->field($model, 'description')->textarea(['data-id' => 'spf']);?>
         <?=$form->field($model, 'isBlocked')->checkbox();?>
         <?=$form->field($model,'repeatType')->dropDownList($model::REPEAT_TYPE)?>
