@@ -20,7 +20,7 @@ class ActivityController extends BaseWebController
         $arr1=['ones'=>'val1','tho'=>['treee'=>'val2']];
         $val=ArrayHelper::getValue($arr1,'one','def');
         $val1=ArrayHelper::getValue($arr1,'tho.treee');
-        $data=[['id'=>1,'name'=>'one','phone'=>'888'],['id'=>2,'name'=>'two','phone'=>'888']];
+        $data=[['id'=>2,'name'=>'one','phone'=>'888'],['id'=>3,'name'=>'two','phone'=>'888']];
         $values=ArrayHelper::map($data,'id',function($data){
             return ArrayHelper::getValue($data,'name').' ('.
                 ArrayHelper::getValue($data,'phone').')';

@@ -19,6 +19,9 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'hGjZpICwDvrgPEHg1oVQefu1w35NPgD9',
         ],
+        'formatter'=>[
+            'dateFormat' => 'php:d.m.Y'
+        ],
         'authManager'=>[
             'class'=>'yii\rbac\DbManager'
         ],
