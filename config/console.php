@@ -35,7 +35,9 @@ $config = [
             'modelClass' => '\app\models\Activity'],
 
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+//            'class' => 'yii\caching\FileCache',
+            'class'=>'yii\caching\MemCache',
+            'useMemcached' => true
         ],
         'log' => [
             'targets' => [

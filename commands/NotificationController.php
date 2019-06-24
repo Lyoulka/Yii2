@@ -47,7 +47,5 @@ class NotificationController extends Controller
         if($notifComp->sendNotification($activities)){
             echo $this->ansiFormat('All mail success',Console::FG_PURPLE).PHP_EOL;
         }
-
-        
     }
 }
