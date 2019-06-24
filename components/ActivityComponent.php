@@ -8,6 +8,7 @@ use yii\web\UploadedFile;
 class ActivityComponent extends Component
 {
     public $modelClass;
+    const EVENT_MY_EVENT='my_event';
     /**
      * @return Model
      */

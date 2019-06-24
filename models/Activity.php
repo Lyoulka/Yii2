@@ -3,12 +3,22 @@
 
 namespace app\models;
 
+use app\behaviors\GetDateCreatedBegavior;
+use app\behaviors\ShowLogBehavior;
 use app\models\validations\StopPhraseValidation;
 use yii\base\Model;
 
 class Activity extends ActivityBase
 {
-
+    public function behaviors()
+    {
+        return [
+            ['class'=>GetDateCreatedBegavior::class,
+                'attribute_name' => 'created_at'],
+            GetDateCreatedBegavior::class,
+            ShowLogBehavior::class
+        ];
+    }
     public $emailRepeat;
     public $useNotification;
     public $repeatType;
