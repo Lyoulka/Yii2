@@ -31,12 +31,20 @@ class RbacComponent extends Component
         $authManager->addChild($user,$viewEditOwnerActivity);
         $authManager->addChild($admin,$user);
         $authManager->addChild($admin,$allPrivilege);
-        $authManager->assign($admin,3);
-        $authManager->assign($user,4);
+        $authManager->assign($admin,1);
+        $authManager->assign($user,2);
     }
+
+    public function addToUserRole($user_id){
+        $role=$this->getAuthManager()->getRole('user');
+
+        $this->getAuthManager()->assign($role,$user_id);
+    }
+
     public function canCreateActivity():bool{
         return \Yii::$app->user->can('createActivity');
     }
+
     public function canViewOrEditActivity($activity):bool{
         if(\Yii::$app->user->can('allPrivilege')){
             return true;
