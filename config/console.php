@@ -15,6 +15,26 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
         '@tests' => '@app/tests',
     ],
+    'container'=>[
+        'singletons'=>[
+            'app\components\Notification'=>[
+                'class'=>'app\components\NotificationService'
+            ],
+            'app\components\Logger'=>[
+                'class'=>\app\components\LoggerConsole::class
+            ],
+            'notification'=>['class'=>'app\components\Notification'],
+            'yii\mail\MailerInterface'=>function(){
+                return Yii::$app->mailer;
+            }
+        ],
+        'definitions'=>[
+            'app\models\Activity'
+            =>[
+                'class'=>\app\models\Activity::class
+            ]
+        ]
+    ],
     'components' => [
         'authManager'=>[
             'class'=>'yii\rbac\DbManager'

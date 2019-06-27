@@ -41,8 +41,10 @@ class NotificationController extends Controller
         $activities=$actComp->getNotificationActivity($this->date);
 
         /** @var NotificationComponent $notifComp */
-        $notifComp=\Yii::createObject(['class'=>NotificationComponent::class,
-            'mailer'=>\Yii::$app->mailer]);
+//        $notifComp=\Yii::createObject(['class'=>NotificationComponent::class,
+//            'mailer'=>\Yii::$app->mailer]);
+
+        $notifComp=\Yii::$container->get('notification');
 
         if($notifComp->sendNotification($activities)){
             echo $this->ansiFormat('All mail success',Console::FG_PURPLE).PHP_EOL;

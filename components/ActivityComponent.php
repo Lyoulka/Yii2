@@ -13,7 +13,7 @@ class ActivityComponent extends Component
      * @return Activity
      */
     public function getModel(){
-        return new $this->modelClass;
+        return \Yii::$container->get('app\models\Activity');
     }
     public function createActivity(Activity &$model):bool{
         $model->img=UploadedFile::getInstance($model,'img');

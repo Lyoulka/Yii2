@@ -14,6 +14,21 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'container'=>[
+        'singletons'=>[
+            'app\components\Notification'=>[
+                'class'=>'app\components\NotificationService'
+            ],
+            'app\components\Logger'=>[
+                'class'=>\app\components\LoggerWeb::class
+            ],
+            'notification'=>['class'=>'app\components\Notification'],
+            'yii\mail\MailerInterface'=>function(){
+                return Yii::$app->mailer;
+            }
+        ],
+        'definitions'=>[]
+    ],
     'components' => [
         'request' => [
             'parsers' => [
