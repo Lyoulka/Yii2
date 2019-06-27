@@ -1,6 +1,9 @@
 <?php
 namespace app\components;
 use yii\base\Component;
+use yii\caching\DbDependency;
+use yii\caching\ExpressionDependency;
+use yii\caching\TagDependency;
 use yii\db\Connection;
 use yii\db\Exception;
 use yii\db\Query;
@@ -16,14 +19,18 @@ class DaoComponent extends Component
     public function getActivityUser($user_id){
         $sql='select * from activity where user_id=:user';
         return $this->connection->createCommand($sql,[':user'=>$user_id])
+            ->cache(10,new DbDependency(['sql' => 'select max(id)
+            from activity where user_id='.(int)$user_id]))
             ->queryAll();
     }
     public function getFirstActivityBlocked(){
         $query=new Query();
+//        TagDependency::in validate(\Yii::$app->cache,'tag1');
         return $query->select(['id','title'])
             ->from('activity')
             ->andWhere(['isBlocked'=>1])
             ->orderBy(['title'=>SORT_DESC])
+            ->cache(10,new TagDependency(['tags' => 'tag1']))
             ->one($this->connection);
     }
     public function getCountActivity(){
@@ -40,6 +47,7 @@ class DaoComponent extends Component
             ->from('activity')
             ->andWhere(['isBlocked'=>1])
             ->orderBy(['title'=>SORT_DESC])
+//            ->cache(10)
             ->createCommand()->query();
     }
     public function insertsTransaction(){
@@ -58,22 +66,23 @@ class DaoComponent extends Component
 //            $trans->rollBack();
 //        }
         $this->connection->transaction(
-          /**
+        /**
          * @param $db
          */
-        function($db){
-            $this->connection->createCommand()
-                ->update('activity',['title'=>'qwe'],
-                    ['id'=>2])->execute();
-            //throw new Exception('error'); //
-            $this->connection->createCommand()
-                ->update('activity',['title'=>'qwe'],
-                    ['id'=>2])->execute();
-        });
+            function($db){
+                $this->connection->createCommand()
+                    ->update('activity',['title'=>'qwe'],
+                        ['id'=>2])->execute();
+                //throw new Exception('error'); //
+                $this->connection->createCommand()
+                    ->update('activity',['title'=>'qwe'],
+                        ['id'=>2])->execute();
+            });
     }
     public function getUsersAll(){
         $sql='SELECT * from users;';
         return $this->connection->createCommand($sql)
+            ->cache(10)
             ->queryAll();
     }
 }

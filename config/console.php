@@ -19,8 +19,25 @@ $config = [
         'authManager'=>[
             'class'=>'yii\rbac\DbManager'
         ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => false,
+            'transport' => [
+                'class'=>'Swift_SmtpTransport',
+                'host'=>'smtp.mail.ru',
+                'username' => 'YourEmail@mail.ru',
+                'password' => 'YourPassword',
+                'port' => 587,
+                'encryption' => 'tls'
+            ],
+        ],
+        'activity' => ['class'=> \app\components\ActivityComponent::class,
+            'modelClass' => '\app\models\Activity', 'modelClass' => '\app\models\Activity'],
+
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+         //   'class' => 'yii\caching\FileCache',
+            'class'=>'yii\caching\MemCache',
+            'useMemcached' => true
         ],
         'log' => [
             'targets' => [
