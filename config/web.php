@@ -27,7 +27,9 @@ $config = [
         ],
         'activity' => ['class'=> \app\components\ActivityComponent::class],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+   //         'class' => 'yii\caching\FileCache',
+           'class'=>'yii\caching\MemCache',
+          'useMemcached' => true
         ],
         'rbac'=>['class'=>\app\components\RbacComponent::class],
         'user' => [

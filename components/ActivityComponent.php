@@ -26,6 +26,19 @@ class ActivityComponent extends Component
         }
         return false;
     }
+
+    /**
+     * @param $from
+     * @return Activity[]
+     */
+    public function getNotificationActivity($from):?array {
+        $activities=$this->getModel()::find()
+            ->andWhere('startDate>=:date',[':date' => $from])
+            ->andWhere(['use_notification'=>1])
+            ->all();
+        return $activities;
+    }
+
     public function findActivityByID($id):?Activity{
         return Activity::find()->andWhere(['id'=>$id])->one();
     }
