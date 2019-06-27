@@ -61,13 +61,8 @@ class Activity extends ActivityBase
             $this->addError($attr,'Недопустимое название события');
         }
     }
-    public function attributeLabels(){
-        return [
-            'title' => 'Заголовок описания',
-            'description' => 'Описание',
-            'isBlocked' => 'Блокирующее'
-        ];
-    }
+
+
 
     public function fields()
     {

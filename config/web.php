@@ -40,6 +40,17 @@ $config = [
             'enableAutoLogin' => true,
 //            'enableSession' => false
         ],
+        'i18n'=>[
+            'translations' => [
+                'app*'=>[
+                    'class'=>\yii\i18n\PhpMessageSource::class,
+                    'fileMap' => [
+                        'app'=>'app.php',
+                        'app/error'=>'error.php'
+                    ]
+                ]
+            ]
+        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
