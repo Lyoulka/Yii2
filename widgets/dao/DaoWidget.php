@@ -12,6 +12,7 @@ class DaoWidget extends Widget
             throw new \Exception('Users param is required');
         }
     }
+
     public function run(){
         return $this->render('index',['users'=>$this->users]);
     }

@@ -3,9 +3,12 @@
  * @var $model \app\models\Activity ...
  */
 ?>
+<p>
+    <?=Yii::t('app','DateCreated',[strtotime($model->startDate)])?>
+</p>
 <table>
     <?=\yii\helpers\Html::tag('thead', "$model->title", ['class' => 'title'])?>
-    <tr><td>День начала события:</td><?=\yii\helpers\Html::tag('td', "$model->startDate", ['class' => 'event'])?></tr>
+    <tr><td>День начала события:</td><?=\yii\helpers\Html::tag('td', Yii::t('app','DateCreated ',[strtotime($model->startDate)]), ['class' => 'event'])?></tr>
     <tr><td>Описание события:</td><?=\yii\helpers\Html::tag('td', "$model->description", ['class' => 'event'])?></tr>
     <tr><td>Повтор события:</td><?=\yii\helpers\Html::tag('td', "$model->repeatType", ['class' => 'event'])?></tr>
     <tr><td>Уведомлять по почте</td><?=\yii\helpers\Html::tag('td', "$model->email", ['class' => 'email'])?></tr>

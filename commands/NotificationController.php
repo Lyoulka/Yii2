@@ -1,0 +1,53 @@
+<?php
+
+
+namespace app\commands;
+
+
+use app\components\ActivityComponent;
+use app\components\NotificationComponent;
+use yii\console\Controller;
+use yii\helpers\Console;
+
+class NotificationController extends Controller
+{
+
+    public $date;
+
+    public function optionAliases()
+    {
+        return [
+            'd'=>'date'
+        ];
+    }
+
+    public function options($actionID)
+    {
+        return [
+            'date'
+        ];
+    }
+
+    public function actionTest(){
+        echo 'ok'.PHP_EOL;
+
+        print_r($this->date);
+    }
+
+    public function actionSend(){
+
+        /** @var ActivityComponent $actComp */
+        $actComp=\Yii::$app->activity;
+        $activities=$actComp->getNotificationActivity($this->date);
+
+        /** @var NotificationComponent $notifComp */
+//        $notifComp=\Yii::createObject(['class'=>NotificationComponent::class,
+//            'mailer'=>\Yii::$app->mailer]);
+
+        $notifComp=\Yii::$container->get('notification');
+
+        if($notifComp->sendNotification($activities)){
+            echo $this->ansiFormat('All mail success',Console::FG_PURPLE).PHP_EOL;
+        }
+    }
+}

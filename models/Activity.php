@@ -43,7 +43,7 @@ class Activity extends ActivityBase
 //            латинских букв'],
             ['title',StopPhraseValidation::class],
             ['description', 'string','max'=> 255],
-            [['startDate','endDate','isRepeat'],'date','format' => 'php:Y-m-d'],
+            [['startDate','endDate'],'date','format' => 'php:Y-m-d'],
             [['isBlocked','useNotification'],'boolean'],
             ['repeatType','in','range' => array_keys(self::REPEAT_TYPE)],
             ['img','file','extensions' => ['jpg','png']],
@@ -61,11 +61,26 @@ class Activity extends ActivityBase
             $this->addError($attr,'Недопустимое название события');
         }
     }
-    public function attributeLabels(){
+
+
+
+    public function fields()
+    {
         return [
-            'title' => 'Заголовок описания',
-            'description' => 'Описание',
-            'isBlocked' => 'Блокирующее'
+            'id',
+            'title',
+            'description',
+//            'user_email'=>function($model){
+//                return $model->user->email;
+//            },
+//            'user'
+        ];
+    }
+
+    public function extraFields()
+    {
+        return [
+            'user'
         ];
     }
 }

@@ -10,10 +10,10 @@ class ActivityComponent extends Component
     public $modelClass;
     const EVENT_MY_EVENT='my_event';
     /**
-     * @return Model
+     * @return Activity
      */
     public function getModel(){
-        return new $this->modelClass;
+        return \Yii::$container->get('app\models\Activity');
     }
     public function createActivity(Activity &$model):bool{
         $model->img=UploadedFile::getInstance($model,'img');
@@ -26,14 +26,30 @@ class ActivityComponent extends Component
         }
         return false;
     }
+
+    /**
+     * @param $from
+     * @return Activity[]
+     */
+    public function getNotificationActivity($from):?array {
+        $activities=$this->getModel()::find()
+            ->andWhere('startDate>=:date',[':date' => $from])
+            ->andWhere(['use_notification'=>1])
+            ->all();
+
+        return $activities;
+    }
+
     public function findActivityByID($id):?Activity{
         return Activity::find()->andWhere(['id'=>$id])->one();
     }
+
     private function saveFile(UploadedFile $file, &$file_name):bool{
         $file_name=$this->genNameFile($file);
         $path=$this->genPathToSaveFile($file_name);
         return $file->saveAs($path);
     }
+
     private function genPathToSaveFile($file_name):string {
         FileHelper::createDirectory(\Yii::getAlias('@webroot'.DIRECTORY_SEPARATOR.'images'));
         $path=\Yii::getAlias('@webroot'.DIRECTORY_SEPARATOR.'images'.

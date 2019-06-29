@@ -15,12 +15,49 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
         '@tests' => '@app/tests',
     ],
+    'container'=>[
+        'singletons'=>[
+            'app\components\Notification'=>[
+                'class'=>'app\components\NotificationService'
+            ],
+            'app\components\Logger'=>[
+                'class'=>\app\components\LoggerConsole::class
+            ],
+            'notification'=>['class'=>'app\components\Notification'],
+            'yii\mail\MailerInterface'=>function(){
+                return Yii::$app->mailer;
+            }
+        ],
+        'definitions'=>[
+            'app\models\Activity'
+            =>[
+                'class'=>\app\models\Activity::class
+            ]
+        ]
+    ],
     'components' => [
         'authManager'=>[
             'class'=>'yii\rbac\DbManager'
         ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => false,
+            'transport' => [
+                'class'=>'Swift_SmtpTransport',
+                'host'=>'smtp.yandex.ru',
+                'username' => 'geekbrains@onedeveloper.ru',
+                'password' => '112358njkz_',
+                'port' => 587,
+                'encryption' => 'tls'
+            ],
+        ],
+        'activity' => ['class'=> \app\components\ActivityComponent::class,
+            'modelClass' => '\app\models\Activity'],
+
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+//            'class' => 'yii\caching\FileCache',
+            'class'=>'yii\caching\MemCache',
+            'useMemcached' => true
         ],
         'log' => [
             'targets' => [

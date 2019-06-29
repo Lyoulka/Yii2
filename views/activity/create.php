@@ -3,7 +3,9 @@
  * @var $model \app\models\Activity
  */
 ?>
-<h2>Добавление события</h2>
+<h2><?=Yii::t('app','Create Activity')?></h2>
+<p><?=Yii::t('app','for user',['user'=>Yii::$app->user->getId()])?></p>
+
 <div class="row">
     <div class="col-md-6">
         <?php $form=\yii\bootstrap\ActiveForm::begin(

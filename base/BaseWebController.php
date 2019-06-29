@@ -3,6 +3,7 @@
 namespace app\base;
 
 use yii\web\Controller;
+use yii\web\HttpException;
 
 class BaseWebController extends Controller
 {

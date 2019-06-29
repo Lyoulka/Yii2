@@ -14,8 +14,26 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'container'=>[
+        'singletons'=>[
+            'app\components\Notification'=>[
+                'class'=>'app\components\NotificationService'
+            ],
+            'app\components\Logger'=>[
+                'class'=>\app\components\LoggerWeb::class
+            ],
+            'notification'=>['class'=>'app\components\Notification'],
+            'yii\mail\MailerInterface'=>function(){
+                return Yii::$app->mailer;
+            }
+        ],
+        'definitions'=>[]
+    ],
     'components' => [
         'request' => [
+            'parsers' => [
+                'application/json'=>'yii\web\JsonParser'
+            ],
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'hGjZpICwDvrgPEHg1oVQefu1w35NPgD9',
         ],
@@ -27,12 +45,26 @@ $config = [
         ],
         'activity' => ['class'=> \app\components\ActivityComponent::class],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+//            'class' => 'yii\caching\FileCache',
+            'class'=>'yii\caching\MemCache',
+            'useMemcached' => true
         ],
         'rbac'=>['class'=>\app\components\RbacComponent::class],
         'user' => [
             'identityClass' => 'app\models\Users',
             'enableAutoLogin' => true,
+//            'enableSession' => false
+        ],
+        'i18n'=>[
+            'translations' => [
+                'app*'=>[
+                    'class'=>\yii\i18n\PhpMessageSource::class,
+                    'fileMap' => [
+                        'app'=>'app.php',
+                        'app/error'=>'error.php'
+                    ]
+                ]
+            ]
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -59,6 +91,13 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'new'=>'activity/create',
+                'events/<action>'=>'activity/<action>',
+                'events/view/<id:\w+>'=>'activity/view',
+                ['class'=>\yii\rest\UrlRule::class,
+                    'controller' => 'activity-rest',
+                    'pluralize' => false]
+//                '<controller>/<action>'=>'<controller>/<action>'
             ],
         ],
     ],
