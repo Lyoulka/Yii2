@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m190619_060936_addColumn
+ * Class m190619_151909_AddColumn
  */
-class m190619_060936_addColumn extends Migration
+class m190619_151909_AddColumn extends Migration
 {
     /**
      * {@inheritdoc}
@@ -14,7 +14,7 @@ class m190619_060936_addColumn extends Migration
     {
         $this->addColumn('activity','user_id',
             $this->integer()->notNull());
-        $this->addForeignKey('activity_usersFK','activity','user_id',
+        $this->addForeignKey('acitivy_usersFK','activity','user_id',
             'users','id','CASCADE','CASCADE');
     }
     /**
@@ -24,8 +24,6 @@ class m190619_060936_addColumn extends Migration
     {
         $this->dropColumn('activity','user_id');
     }
-
-
     /*
     // Use up()/down() to run migration code without a transaction.
     public function up()
@@ -35,7 +33,7 @@ class m190619_060936_addColumn extends Migration
 
     public function down()
     {
-        echo "m190619_060936_addColumn cannot be reverted.\n";
+        echo "m190619_151909_AddColumn cannot be reverted.\n";
 
         return false;
     }

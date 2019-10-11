@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m190618_165941_CreateTable
+ * Class m190619_151702_CreateTables
  */
-class m190618_165941_CreateTable extends Migration
+class m190619_151702_CreateTables extends Migration
 {
     /**
      * {@inheritdoc}
@@ -47,10 +47,13 @@ class m190618_165941_CreateTable extends Migration
     // Use up()/down() to run migration code without a transaction.
     public function up()
     {
+
     }
+
     public function down()
     {
-        echo "m190618_165941_CreateTables cannot be reverted.\n";
+        echo "m190619_151702_CreateTables cannot be reverted.\n";
+
         return false;
     }
     */

@@ -24,6 +24,6 @@ class ActivityChangeAction extends Action
             }
         }
 
-        return  $this -> controller -> render('change', ['name' => 'Юлия', 'model'=>$model]);
+        return  $this -> controller -> render('change', ['model'=>$model]);
     }
 }
